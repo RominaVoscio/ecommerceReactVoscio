@@ -2,7 +2,6 @@ import ItemListContainer from "./ItemListContainer"
 import NavBar from "./NavBar"
 
 
-
 function App () {
     return (
             <>
@@ -12,5 +11,5 @@ function App () {
                 />
             </>
     )
-}
-export default App
+};
+export default App;
