@@ -7,16 +7,19 @@ let productosIniciales=[
         id: 1,
         nombre: "Arlyt",
         precio: 200,
+        imagen: "/arlytExpress120.jpg",
     },
     {
         id: 2,
         nombre: "Natura",
         precio: 300,
+        imagen: "/naturaExpess.jpg",
     },
     {
         id: 3,
         nombre: "Renu",
         precio: 250,
+        imagen: "/renuchico.jpg",
     }]
 const ItemListContainer =(prop) =>{
     //const miOnAdd=()=>{}
@@ -28,13 +31,13 @@ const ItemListContainer =(prop) =>{
     useEffect(()=>{
         const promesa= new Promise((res, rej)=>{
             setTimeout(()=>{
-                res(productos)
+                res(productosIniciales)
             }, 2000)
         })
-        promesa.then(()=>{
+        promesa.then((respuestaDeLaApi)=>{
             setProductos(productosIniciales)
         })
-        .catch(()=>{
+        .catch((errorDeLaApi)=>{
             setError(error)
         })
         .finally(()=>{
@@ -43,11 +46,13 @@ const ItemListContainer =(prop) =>{
     })
 
     return(
+        <>
         <main className="container">
             <h2> {prop.greeting}! </h2>
             <p>{loading ? "cargando..." : "ya tenes los Productos"}</p>
-            <ItemList productos/>
+            <ItemList productos={productos}/>
         </main>
+        </>
     )
 };
 export default ItemListContainer;
