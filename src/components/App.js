@@ -1,14 +1,17 @@
 import ItemListContainer from "./ItemListContainer"
 import NavBar from "./NavBar"
-
+import Footer from "./Footer"
+import ItemDetailContainer from "./ItemDetailContainer";
 
 function App () {
     return (
             <>
+            <header>
                 <NavBar/>
-                <ItemListContainer
-                greeting="Bienvenidos a Coapro"
-                />
+            </header>    
+            <ItemListContainer greeting="Bienvenidos a Coapro"/>
+            <ItemDetailContainer/>
+            <Footer/>
             </>
     )
 };

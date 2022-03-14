@@ -1,5 +1,6 @@
 //import ItemCount from './ItemCount'
  //<ItemCount stock={5} inicial={1} OnAdd={miOnAdd}/>
+ import {Container} from 'react-bootstrap'
 import ItemList from "./ItemList"
 import { useState, useEffect } from "react"
 let productosIniciales=[
@@ -47,11 +48,11 @@ const ItemListContainer =(prop) =>{
 
     return(
         <>
-        <main className="container">
-            <h2> {prop.greeting}! </h2>
-            <p>{loading ? "cargando..." : "ya tenes los Productos"}</p>
+        <Container as="main" id="contPrincipal">
+            <h2 id="styleH2"> {prop.greeting}! </h2>
+            <p>{loading ? "cargando..." : "Productos Disponibles:"}</p>
             <ItemList productos={productos}/>
-        </main>
+        </Container>
         </>
     )
 };

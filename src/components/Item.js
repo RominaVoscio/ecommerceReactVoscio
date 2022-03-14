@@ -1,7 +1,8 @@
-import{Card, Button} from 'react-bootstrap'
+import{Col, Card, Button} from 'react-bootstrap'
 
 const Item =({producto})=>{
     return(
+        <Col md="auto">
         <Card style={{ width: '18rem' }}>
             <Card.Img variant="top" src={producto.imagen} />
             <Card.Body>
@@ -12,11 +13,7 @@ const Item =({producto})=>{
                 <Button variant="primary">Detalle</Button>
             </Card.Body>
         </Card>
-        //<div>
-          //  <p>{producto.nombre}</p>
-            //<p>Precio: $ {producto.precio}</p>
-            //<img src={producto.imagen}></img>
-        //</div>
+        </Col>
     )
 };
 export default Item;
