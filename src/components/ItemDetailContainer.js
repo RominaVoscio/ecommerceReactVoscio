@@ -1,31 +1,30 @@
 import {Container} from 'react-bootstrap'
+import {productosIniciales} from './productos'
 import ItemDetail from './ItemDetail'
 import { useState, useEffect } from "react"
-let productoSelect= {
-        id: 1,
-        nombre: "Arlyt",
-        precio: 200,
-        imagen: "/arlytExpress120.jpg",
-        descripcion: "ARLYT EXPRESS MULTIUSO SOLUCIÓN MULTIPROPÓSITO E ISOTÓNICA PARA TODO TIPO DE LENTES DE CONTACTO BLANDAS. LIMPIADORA, DESINFECTANTE, CONSERVADORA, HUMECTANTE Y DE ENJUAGUE.",
-    }
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 const ItemDetailContainer =()=>{
     const[loading, setLoading]= useState(true)
     const[producto, setProducto]= useState({})
+    const {id}= useParams()
     useEffect(()=>{
-        const promesa= new Promise((res, rej)=>{
+        const promesa= new Promise((resolve)=>{
             setTimeout(()=>{
-                res(productoSelect)
+                const myCat = productosIniciales.find((producto) => producto.id === id);
+                resolve(myCat)
             }, 2000)
         })
-        promesa.then((respuestaDeLaApi)=>{
-            setProducto(productoSelect)
+        promesa.then((res)=>{
+            setProducto(res)
         })
         .catch((errorDeLaApi)=>{
-            console.log("Error al cargar")
+            toast.error("Error al cargar")
         })
         .finally(()=>{
             setLoading(false)
-        })
+        }, [id]);
     })
     return(
         <>
