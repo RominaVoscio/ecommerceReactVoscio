@@ -4,7 +4,7 @@ import{Col, Card, Button} from 'react-bootstrap';
 const Item =({producto})=>{
     return(
         <Col>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '16rem' }}>
             <Card.Img variant="top" src={producto.imagen} />
             <Card.Body>
                 <Card.Title>{producto.nombre}</Card.Title>
@@ -12,11 +12,9 @@ const Item =({producto})=>{
                     Precio: ${producto.precio}
                 </Card.Text>
                 <Link to={`/item/${producto.id}`}>
-                <Button variant="primary">
-                
-                Detalle
-                
-                </Button>
+                    <Button variant="primary">
+                        Detalle
+                    </Button>
                 </Link>
             </Card.Body>
         </Card>

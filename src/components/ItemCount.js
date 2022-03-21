@@ -1,27 +1,26 @@
 import { useState } from "react";
-const ItemCount =(props)=>{
-    const [contador, setContador]= useState(props.inicial)
-    const incrementaClick =()=>{
-        if (contador< props.stock &&  contador>= 1){
+const ItemCount =({stock, inicial, onAdd})=>{
+    const [contador, setContador]= useState(inicial)
+    const incrementaClick =(e)=>{
+        if (contador< stock){
             setContador(contador +1)
         }
     }
-    const decrementarClick =()=>{
-        if(contador> 1){
+    const decrementarClick =(e)=>{
+        if(contador> inicial){
             setContador(contador -1)
         }
     }
-    const confirmar =()=>{
-        setContador(1)
+    const confirmar =(e)=>{
+        console.log(e)
+        onAdd(contador)
     }
     return(
         <>
-        <div className="container">
             <p>Cantidad de ítems: {contador}</p>
-            <button onClick= {incrementaClick}> + </button>
+            <button onClick= {incrementaClick}> Aumentar </button>
             <button onClick= {confirmar}>Confirmar</button>
-            <button onClick= {decrementarClick}> - </button>
-        </div>
+            <button onClick= {decrementarClick}> Disminuir </button>
         </>
     );
 }
