@@ -1,14 +1,21 @@
 import ItemCount from './ItemCount';
 import {Link} from 'react-router-dom';
-import { useState } from "react";
-import {Container, Row, Col, Card} from 'react-bootstrap';
+import { useContext, useState } from "react";
+import {Container, Row, Col, Card, Button} from 'react-bootstrap';
+import {context} from './CartContext';
+
 const ItemDetail =({producto})=>{
     const [seleccionado, setSeleccionado]= useState(false)
+    const [cambio, setCambio]= useState(false)
+    const {addItem}= useContext(context)
     const myOnAdd= (unidadSeleccionada)=>{
         if (unidadSeleccionada!== undefined){
             setSeleccionado(unidadSeleccionada)
         }
+        setCambio(true)
     }
+  
+
     return(
         <>
         <Container>
@@ -26,9 +33,10 @@ const ItemDetail =({producto})=>{
                             <p>{producto.descripcion}</p>
                         Precio: ${producto.precio}
                         </Card.Text>
-                        <ItemCount stock={5} inicial={1} onAdd={myOnAdd}/>
-                        <p>{seleccionado ?'Usted seleccionó algo': 'No se eligio ninguna cantidad'}</p>
-                        {seleccionado ? <Link to="/cart">carrito</Link> : null}
+                        { cambio ? <h4>Gracias por comprar</h4> : 
+                            <ItemCount stock={5} inicial={1} onAdd={myOnAdd}/> }
+                        <p>{seleccionado ?'Usted seleccionó el producto': 'No se eligio ninguna cantidad'}</p>
+                        {seleccionado ? <Button onClick={()=>{addItem(producto, seleccionado)}} variant="outline-primary"><Link to="/cart">Carrito</Link></Button> : null}
                     </Card.Body>
                 </Card>
                 </Col>
