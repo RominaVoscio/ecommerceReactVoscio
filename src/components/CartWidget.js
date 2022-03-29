@@ -1,8 +1,12 @@
- import {NavLink} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import { useContext } from "react";
+import {context} from './CartContext';
+
 const CartWidget =()=> {
+    const {cartCantidad}= useContext(context)
     return(<>
-            <NavLink to="/carrito">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <NavLink to="/cart">
+                <i class="fa fa-shopping-cart" aria-hidden="true">{cartCantidad}</i>
             </NavLink>
             </>
     )

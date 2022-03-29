@@ -2,7 +2,7 @@ import { useContext } from "react";
 import {context} from './CartContext'
 const Cart=()=>{
     const {removeItem, clear, cart}= useContext(context)
-    //const total = resultado.total
+    
 
     return(
         <>
@@ -15,9 +15,11 @@ const Cart=()=>{
                     <p>{item.producto.descripcion}</p>
                     <p>${item.producto.precio}</p>
                     <p>Cantidad: {item.cantidad}</p>
+                    <p>Importe: ${item.cantidad * item.producto.precio}</p>
                     <button onClick= {()=>removeItem(item.producto.id)}>Borrar Item</button>
                 </div>        
         ))}
+        
         <button onClick={()=>clear()}>Borrar Carrito</button>
         </div>
         </>
